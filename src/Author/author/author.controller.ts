@@ -1,31 +1,36 @@
 import { Controller, Get, Post, Put, Delete } from '@nestjs/common';
+import { AuthorService } from "./author.service";
 
 @Controller('author')
 export class AuthorController {
 
+    constructor(
+        private authorService: AuthorService,
+    ) { }
+
     @Get('index')
     Index(): string {
-        return 'Retorno una lista de Autores';
+        return this.authorService.Index();
     }
 
     @Get('get')
     Get(): string {
-        return 'Retorno un solo Autor';
+        return this.authorService.Get();
     }
 
     @Post('post')
     Post(): string {
-        return 'Guardo un nuevo Autor';
+        return this.authorService.Post();
     }
 
     @Put('put')
     Put(): string {
-        return 'Actualizo un Autor';
+        return this.authorService.Put();
     }
 
     @Delete('delete')
     Delete(): string {
-        return 'Elimino un Autor';
+        return this.authorService.Delete();
     }
 
 }
